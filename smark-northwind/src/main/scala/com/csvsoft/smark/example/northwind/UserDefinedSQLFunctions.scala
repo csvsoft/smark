@@ -13,6 +13,7 @@ class UserDefinedSQLFunctions(taskSpec:SmarkTaskCodeSpec) extends BaseUserDefine
    override def executeTask(upTo:Int): Option[Set[String]] = {
     sparkSession.udf.register("myUpper", (input: String) => input.toUpperCase)
      sparkSession.udf.register("myLower", (input: String) => input.toLowerCase)
+     sparkSession.udf.register("toInt", (input: String) => Integer.valueOf(input))
     None
   }
  }
