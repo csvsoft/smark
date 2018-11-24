@@ -1,0 +1,94 @@
+#set($codeOutRootDir=$appSpec.codeOutRootDir)
+
+#macro(basereadcsv,$taskletSpec)
+package ${appSpec.packageName}.generated
+import com.csvsoft.smark.config.SmarkTaskReadCSVSpec
+import com.csvsoft.smark.core.{BaseTasklet, DefaultReadCSVTasklet}
+class Base${taskletSpec.className}(smarkTaskReadCSVSpec: SmarkTaskReadCSVSpec) extends DefaultReadCSVTasklet(smarkTaskReadCSVSpec)
+#end
+
+#macro(readcsv,$taskletSpec)
+package ${appSpec.packageName}
+import com.csvsoft.smark.config.SmarkTaskReadCSVSpec
+import com.csvsoft.smark.core.{BaseTasklet, DefaultReadCSVTasklet}
+import  ${appSpec.packageName}.generated.Base${taskletSpec.className}
+class ${taskletSpec.className}(smarkTaskReadCSVSpec: SmarkTaskReadCSVSpec) extends Base${taskletSpec.className}(smarkTaskReadCSVSpec)
+#end
+
+### save CSV
+
+#macro(basesavecsv,$taskletSpec)
+package ${appSpec.packageName}.generated
+import com.csvsoft.smark.config.SmarkTaskSaveCSVSpec
+import com.csvsoft.smark.core.{BaseTasklet, DefaultSaveCSVTasklet}
+class Base${taskletSpec.className}(smarkTaskReadCSVSpec: SmarkTaskSaveCSVSpec) extends DefaultSaveCSVTasklet(smarkTaskSaveCSVSpec)
+#end
+
+#macro(savecsv,$taskletSpec)
+package ${appSpec.packageName}
+import com.csvsoft.smark.config.SmarkTaskSaveCSVSpec
+import com.csvsoft.smark.core.{BaseTasklet, DefaultSaveCSVTasklet}
+import  ${appSpec.packageName}.generated.Base${taskletSpec.className}
+class ${taskletSpec.className}(smarkTaskReadCSVSpec: SmarkTaskSaveCSVSpec) extends Base${taskletSpec.className}(smarkTaskSaveCSVSpec)
+#end
+
+### /save CSV
+
+
+
+### read JDBC
+
+#macro(basereadjdbc,$taskletSpec)
+package ${appSpec.packageName}.generated
+import com.csvsoft.smark.config.SmarkTaskReadJDBCSpec
+import com.csvsoft.smark.core.{BaseTasklet, ReadJDBCTasklet}
+class Base${taskletSpec.className}(smarkTaskReadJDBCSpec: SmarkTaskReadJDBCSpec) extends ReadJDBCTasklet(smarkTaskReadJDBCSpec)
+#end
+
+#macro(readjdbc,$taskletSpec)
+package ${appSpec.packageName}
+import com.csvsoft.smark.config.SmarkTaskReadJDBCSpec
+import com.csvsoft.smark.core.{BaseTasklet, DefaultSaveCSVTasklet}
+import  ${appSpec.packageName}.generated.Base${taskletSpec.className}
+class ${taskletSpec.className}(smarkTaskReadJDBCSpec: SmarkTaskReadJDBCSpec) extends Base${taskletSpec.className}(smarkTaskReadJDBCSpec)
+#end
+
+### /read JDBC
+
+
+
+#macro(basesql,$taskletSpec)
+package ${appSpec.packageName}.generated
+import com.csvsoft.smark.config.SmarkTaskSQLSpec
+import com.csvsoft.smark.core.DefaultSQLTasklet
+
+class Base${taskletSpec.className}(smarkTaskSQL:SmarkTaskSQLSpec) extends DefaultSQLTasklet(smarkTaskSQL){
+}
+#end
+
+#macro(sql,$taskletSpec)
+package ${appSpec.packageName}
+import com.csvsoft.smark.config.SmarkTaskSQLSpec
+import ${appSpec.packageName}.generated.Base${taskletSpec.className}
+
+class ${taskletSpec.className}(smarkTaskSQLSpec: SmarkTaskSQLSpec) extends Base${taskletSpec.className}(smarkTaskSQLSpec) {
+}
+#end
+
+
+#foreach($taskletSpec in $appSpec.smarkTasks)
+
+#set($outDir=$taskletSpec.getClassCodeOutDir($appSpec))
+#set($generatedOutDir=$taskletSpec.getBaseClassCodeOutDir($appSpec))
+#if($taskletSpec.getClass().getSimpleName() == "SmarkTaskReadCSVSpec")
+   #set($code="#basereadcsv($taskletSpec)")
+   $fileutil.writeToFile($code,$generatedOutDir)
+   #set($code="#readcsv($taskletSpec)")
+   $fileutil.writeToFile($code,$outDir)
+#elseif($taskletSpec.getClass().getSimpleName() == "SmarkTaskSQLSpec")
+   #set($code="#basesql($taskletSpec)")
+   $fileutil.writeToFile($code,$generatedOutDir)
+   #set($code="#sql($taskletSpec)")
+   $fileutil.writeToFile($code,$outDir)
+#end
+#end

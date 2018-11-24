@@ -1,0 +1,6 @@
+import com.csvsoft.smark.config.SmarkTaskSQLSpec
+import ${appSpec.packageName}.Base${taskletSpec.className}
+
+class ${taskletSpec.className}(smarkTaskSQLSpec: SmarkTaskSQLSpec) extends Base${taskletSpec.className}(smarkTaskSQLSpec) {
+
+}

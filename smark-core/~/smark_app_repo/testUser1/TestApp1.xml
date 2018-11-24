@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<smarkAppSpec name="TestApp1" packageName="com.csvsoft.smark.example" language="scala">
+    <configOptions>#work directory
+work.dir=/tmp/work</configOptions>
+    <codeOutRootDir>~/workspace/smarkAppTest</codeOutRootDir>
+</smarkAppSpec>

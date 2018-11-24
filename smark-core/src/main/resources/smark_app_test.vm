@@ -1,0 +1,11 @@
+package ${appSpec.packageName}.app;
+
+import org.junit.Test;
+
+public class ${appSpec.className}Test {
+
+    @Test
+    public void devTest(){
+        Test${appSpec.className}.main(new String[]{});
+    }
+}

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<smarkAppSpec name="northwind" packageName="com.csvsoft.smark.examples.northwind" className="Northwind" language="scala">
+    <configOptions>csvDir=/Users/zrq/workspace/vaddin/smark-example/src/main/resources/northwind
+        app.dir.work=/tmp/northwindwork
+        debugMode=true
+    </configOptions>
+
+    <smark-tasks>
+        <smark-task xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="smarkTaskReadCSVSpec">
+            <className>LoadCategory</className>
+            <name>Load category</name>
+            <order>1</order>
+            <savePoint>false</savePoint>
+            <fileName>${csvDir}/category.csv</fileName>
+            <viewName>category</viewName>
+            <charset>UTF-8</charset>
+            <inferSchema>false</inferSchema>
+            <header>true</header>
+            <parserLib>commons</parserLib>
+            <comment>#</comment>
+            <delimiter>44</delimiter>
+            <quoteChar>34</quoteChar>
+            <escapeChar>92</escapeChar>
+            <csvReadMode>PERMISSIVE</csvReadMode>
+        </smark-task>
+        <smark-task xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="smarkTaskReadCSVSpec">
+            <className>LoadProduct</className>
+            <name>Load products</name>
+            <order>2</order>
+            <savePoint>false</savePoint>
+            <fileName>${csvDir}/products.csv</fileName>
+            <viewName>products</viewName>
+            <charset>UTF-8</charset>
+            <inferSchema>false</inferSchema>
+            <header>true</header>
+            <parserLib>commons</parserLib>
+            <comment>#</comment>
+            <delimiter>44</delimiter>
+            <quoteChar>34</quoteChar>
+            <escapeChar>92</escapeChar>
+            <csvReadMode>PERMISSIVE</csvReadMode>
+        </smark-task>
+        <smark-task xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="smarkTaskSQLSpec">
+            <className>JoinProductsCategory</className>
+            <name>Join products and category</name>
+            <order>3</order>
+            <savePoint>false</savePoint>
+            <sql-view-pairs>
+                <sql-view-pair>
+                    <sql>select * from products p inner join category c on p.categoryId = c.categoryId</sql>
+                    <view>products_category</view>
+                </sql-view-pair>
+            </sql-view-pairs>
+        </smark-task>
+    </smark-tasks>
+</smarkAppSpec>

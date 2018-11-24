@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<smarkAppSpec name="NorthWind" smarkAppSpecId="1cb451a3-73bc-49bc-8f51-1aeae7ac3d70" packageName="com.csvsoft.smark.example.northwind" className="NorthwindApp" language="scala">
+    <configOptions>app.dir.work=/tmp/northwind
+debugMode=true</configOptions>
+    <codeOutRootDir>/Users/zrq/workspace/vaddin/smark-northwind</codeOutRootDir>
+    <debugRunId>-1</debugRunId>
+    <smark-tasks>
+        <smark-task xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="smarkTaskCodeSpec" smarkTaskId="0024fa17-7da3-4434-8a14-06b21230d4d8">
+            <className>UserDefinedSQLFunctions</className>
+            <desc>A class that defines functions so that SQL can reference it.</desc>
+            <name>UserDefinedFunctions</name>
+            <order>0</order>
+            <savePoint>false</savePoint>
+        </smark-task>
+        <smark-task xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="smarkTaskReadCSVSpec" smarkTaskId="d3cb28fd-37f4-4c3e-b01b-79b2ede7417b">
+            <className>LoadCategory</className>
+            <desc>Load category CSV</desc>
+            <name>LoadCategoryCSV</name>
+            <order>1</order>
+            <savePoint>false</savePoint>
+            <fileName>/Users/zrq/workspace/vaddin/smark-example/src/main/resources/northwind/category.csv</fileName>
+            <charset>UTF-8</charset>
+            <header>True</header>
+            <delimiter>,</delimiter>
+            <quoteChar>"</quoteChar>
+            <escapeChar>\</escapeChar>
+            <dateFormat>yyyy-MM-dd HH:mm:ss.SSS</dateFormat>
+            <viewName>category</viewName>
+            <csvReadMode>PERMISSIVE</csvReadMode>
+            <inferSchema>false</inferSchema>
+            <parserLib>commons</parserLib>
+            <comment>#</comment>
+        </smark-task>
+        <smark-task xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="smarkTaskReadCSVSpec" smarkTaskId="e1b249e4-709a-4bb6-97eb-54489ecefb08">
+            <className>LoadProducts</className>
+            <name>LoadProductsCSV</name>
+            <order>2</order>
+            <savePoint>false</savePoint>
+            <fileName>/Users/zrq/workspace/vaddin/smark-example/src/main/resources/northwind/products.csv</fileName>
+            <charset>UTF-8</charset>
+            <header>True</header>
+            <delimiter>,</delimiter>
+            <quoteChar>"</quoteChar>
+            <escapeChar>\</escapeChar>
+            <dateFormat>yyyy-MM-dd HH:mm:ss.SSS</dateFormat>
+            <viewName>products</viewName>
+            <csvReadMode>PERMISSIVE</csvReadMode>
+            <inferSchema>false</inferSchema>
+            <parserLib>commons</parserLib>
+            <comment>#</comment>
+        </smark-task>
+        <smark-task xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="smarkTaskReadCSVSpec" smarkTaskId="af61f627-e79f-4e4d-98bc-41b805ac646b">
+            <className>LoadCustomer</className>
+            <desc>Load customer</desc>
+            <name>LoadCustomerCSV</name>
+            <order>3</order>
+            <savePoint>false</savePoint>
+            <fileName>/Users/zrq/workspace/vaddin/smark-example/src/main/resources/northwind/customer.csv</fileName>
+            <charset>UTF-8</charset>
+            <header>True</header>
+            <delimiter>,</delimiter>
+            <quoteChar>"</quoteChar>
+            <escapeChar>\</escapeChar>
+            <dateFormat>yyyy-MM-dd HH:mm:ss.SSS</dateFormat>
+            <viewName>customer</viewName>
+            <csvReadMode>PERMISSIVE</csvReadMode>
+            <inferSchema>false</inferSchema>
+            <parserLib>commons</parserLib>
+            <comment>#</comment>
+        </smark-task>
+        <smark-task xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="smarkTaskReadCSVSpec" smarkTaskId="9546536c-972f-4f47-abe5-b5a81c40a514">
+            <className>LoadOrders</className>
+            <name>LoadOrders</name>
+            <order>4</order>
+            <savePoint>false</savePoint>
+            <fileName>/Users/zrq/workspace/vaddin/smark-example/src/main/resources/northwind/orders.csv</fileName>
+            <charset>UTF-8</charset>
+            <header>True</header>
+            <delimiter>,</delimiter>
+            <quoteChar>"</quoteChar>
+            <escapeChar>\</escapeChar>
+            <dateFormat>yyyy-MM-dd HH:mm:ss.SSS</dateFormat>
+            <viewName>orders</viewName>
+            <csvReadMode>PERMISSIVE</csvReadMode>
+            <inferSchema>false</inferSchema>
+            <parserLib>commons</parserLib>
+            <comment>#</comment>
+        </smark-task>
+        <smark-task xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="smarkTaskReadCSVSpec" smarkTaskId="0a030de4-c50a-487b-b465-95cbb15a6e33">
+            <className>LoadOrderDetails</className>
+            <desc>load order details</desc>
+            <name>LoadOrderDetails</name>
+            <order>5</order>
+            <savePoint>false</savePoint>
+            <fileName>/Users/zrq/workspace/vaddin/smark-example/src/main/resources/northwind/order_details.csv</fileName>
+            <charset>UTF-8</charset>
+            <header>True</header>
+            <delimiter>,</delimiter>
+            <quoteChar>"</quoteChar>
+            <escapeChar>\</escapeChar>
+            <dateFormat>yyyy-MM-dd HH:mm:ss.SSS</dateFormat>
+            <viewName>order_details</viewName>
+            <csvReadMode>PERMISSIVE</csvReadMode>
+            <inferSchema>false</inferSchema>
+            <parserLib>commons</parserLib>
+            <comment>#</comment>
+        </smark-task>
+        <smark-task xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="smarkTaskSQLSpec" smarkTaskId="efe8813a-3d46-44a0-8686-064602baa119">
+            <className>SQLTransformation</className>
+            <name>SQLTransformations</name>
+            <order>6</order>
+            <savePoint>false</savePoint>
+            <sql-view-pairs>
+                <sql-view-pair xsi:type="sqlViewPair">
+                    <sql>
+    select
+        c.categoryName,
+        p.productID ,
+        p.productName ,
+        p.supplierID ,
+        p.categoryID ,
+        p.quantityPerUnit ,
+        p.unitPrice ,
+        p.unitsInStock ,
+        p.unitsOnOrder ,
+        p.reorderLevel ,
+        p.discontinued ,
+        myupper(c.categoryName) upper_category,
+        myLower(c.categoryName) lower_category
+    from
+        products p 
+    inner join
+        category c      
+            on p.categoryID = c.categoryID</sql>
+                    <order>0</order>
+                    <sqlViewPairId>9a83b55f-0f82-4237-ac95-1e7a5f611a97</sqlViewPairId>
+                    <view>product_category</view>
+                    <persistMode>MEMORY_AND_DISK</persistMode>
+                </sql-view-pair>
+                <sql-view-pair xsi:type="sqlViewPair">
+                    <sql>
+    select
+        od.unitPrice,
+        od.quantity,
+        od.discount,
+        o.orderID ,
+        o.customerID ,
+        o.employeeID ,
+        o.orderDate ,
+        o.requiredDate ,
+        o.shippedDate ,
+        o.shipVia ,
+        o.freight ,
+        o.shipName ,
+        o.shipAddress ,
+        o.shipCity ,
+        o.shipRegion ,
+        o.shipPostalCode ,
+        o.shipCountry      
+    from
+        order_details od      
+    inner join
+        orders o              
+            on o.orderID = od.orderID</sql>
+                    <order>1</order>
+                    <sqlViewPairId>e0751a3b-63d6-40ba-a1d6-c4e47d09a0d2</sqlViewPairId>
+                    <view>order_detail_fact</view>
+                    <persistMode>MEMORY_AND_DISK</persistMode>
+                </sql-view-pair>
+                <sql-view-pair xsi:type="sqlVarPair">
+                    <sql>select count(1)
+from order_details</sql>
+                    <order>2</order>
+                    <sqlViewPairId>4d1af573-8037-4833-8798-05f86bf16a64</sqlViewPairId>
+                    <varialeName>totalOrders</varialeName>
+                    <dataType>long</dataType>
+                </sql-view-pair>
+                <sql-view-pair xsi:type="sqlVarPair">
+                    <sql>select count(p.productID)
+from products p
+where $totalOrders &gt;1</sql>
+                    <order>3</order>
+                    <sqlViewPairId>ddbf7881-db78-4cdd-ae07-bc283f859ffa</sqlViewPairId>
+                    <varialeName>totalProduct</varialeName>
+                    <dataType>long</dataType>
+                </sql-view-pair>
+                <sql-view-pair xsi:type="sqlViewPair">
+                    <sql>select o.orderID
+,o.customerID
+,o.employeeID
+,o.orderDate
+,o.requiredDate
+,o.shippedDate
+,o.shipVia
+,o.freight
+,o.shipName
+,o.shipAddress
+,o.shipCity
+,o.shipRegion
+,o.shipPostalCode
+,o.shipCountry
+
+from orders o inner join customer c on c.customerID = o.customerID
+where o.orderID &gt; 1</sql>
+                    <order>4</order>
+                    <sqlViewPairId>2c5380b4-dfd9-49a5-a8a7-14ba68db6e4d</sqlViewPairId>
+                    <view>order_customer</view>
+                    <persistMode>MEMORY_ONLY</persistMode>
+                </sql-view-pair>
+            </sql-view-pairs>
+        </smark-task>
+        <smark-task xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="smarkTaskSaveCSVSpec" smarkTaskId="ce884079-72f3-476c-b499-ccf26ca91ce9">
+            <className>SaveProductCategoryToCSV</className>
+            <desc>Save result to a CSVs</desc>
+            <name>SaveProductCategoryToCSV</name>
+            <order>7</order>
+            <savePoint>false</savePoint>
+            <fileName>/tmp/productcategor.csv</fileName>
+            <charset>UTF-8</charset>
+            <header>True</header>
+            <delimiter>,</delimiter>
+            <quoteChar>"</quoteChar>
+            <escapeChar>\</escapeChar>
+            <dateFormat>yyyy-MM-dd HH:mm:ss.sss</dateFormat>
+            <sql>select *
+from product_category</sql>
+            <codec>gzip</codec>
+            <saveMode>OverWrite</saveMode>
+        </smark-task>
+    </smark-tasks>
+</smarkAppSpec>

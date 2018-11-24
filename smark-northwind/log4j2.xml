@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <Property name="logPath">/tmp/logs</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="[%-5level] %d{HH:mm:ss.SSS} %logger{36}.%M() - %msg%n" />
+        </Console>
+
+        <RollingFile name="allFile" fileName="${logPath}/NorthWind_all.log"
+                     filePattern="${logPath}/NorthWind_all_%d{yyyy-MM-dd}.log">
+            <PatternLayout
+                    pattern="[%-5level] %d{HH:mm:ss.SSS} %logger{36}.%M() - %msg%n" />
+            <Policies>
+                <OnStartupTriggeringPolicy />
+                <TimeBasedTriggeringPolicy interval="1"
+                                           modulate="true" />
+            </Policies>
+        </RollingFile>
+        <RollingFile name="NorthWindFile" fileName="${logPath}/NorthWind.log"
+                     filePattern="${logPath}/NorthWind%d{yyyy-MM-dd}.log">
+            <PatternLayout
+                    pattern="[%-5level] %d{HH:mm:ss.SSS} %logger{36}.%M() - %msg%n" />
+            <Policies>
+                <OnStartupTriggeringPolicy />
+                <TimeBasedTriggeringPolicy interval="1"
+                                           modulate="true" />
+            </Policies>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Root level="INFO" additivity="false">
+            <AppenderRef ref="allFile" />
+        </Root>
+        <Logger name="com.csvsoft.smark.example.northwind" level="info" additivity="true">
+            <AppenderRef ref="console" />
+            <appender-ref ref="NorthWindFile" level="info"/>
+        </Logger>
+
+        <Logger name="org.apache.spark" level="info" additivity="true">
+            <appender-ref ref="allFile" level="info"/>
+        </Logger>
+
+    </Loggers>
+</Configuration>

@@ -1,0 +1,6 @@
+package ${appSpec.packageName}.generated
+import com.csvsoft.smark.config.SmarkTaskReadCSVSpec
+import com.csvsoft.smark.core.{BaseTasklet, DefaultReadCSVTasklet}
+class Base${taskletSpec.className}(smarkTaskReadCSVSpec: SmarkTaskReadCSVSpec,fileName:String) extends DefaultReadCSVTasklet(smarkTaskReadCSVSpec,fileName )
+
+
