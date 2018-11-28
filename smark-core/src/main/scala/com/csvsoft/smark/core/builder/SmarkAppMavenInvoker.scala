@@ -6,6 +6,7 @@ import com.csvsoft.smark.config.SmarkAppSpec
 import org.apache.maven.shared.invoker._
 import java.util.Collections
 
+import org.apache.commons.lang.SystemUtils
 import org.apache.logging.log4j.scala.Logging
 import org.apache.maven.shared.invoker.InvocationOutputHandler
 
@@ -33,13 +34,14 @@ object SmarkAppMavenInvoker extends Logging {
   def getMavenHome(): String = {
     import sys.process._
 
-    val retCode: Int = "mvn -version" !
+    val cmd = if(SystemUtils.IS_OS_WINDOWS) "mvn.cmd" else "mvn"
 
-    // val retCode = 0
-    if(retCode != 0) {
-      throw new RuntimeException("Maven is not installed correctly, make sure maven is in the path.")
+    try {
+      val retCode: Int = s"$cmd -version" !
+    }catch{
+        case e:Exception =>throw new RuntimeException("Maven is not installed correctly, make sure maven is in the path.",e)
     }
-    val result: String = "mvn -version" !!
+    val result: String = s"$cmd -version" !!
     val homeLine = result.split("\n").filter(s => s.startsWith("Maven home"))
     homeLine(0).split(":")(1).trim
 
