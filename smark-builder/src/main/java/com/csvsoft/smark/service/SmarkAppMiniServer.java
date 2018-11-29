@@ -23,14 +23,14 @@ import java.nio.file.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class SmarkAppMiniServer {
+public class    SmarkAppMiniServer {
 
     Logger logger = LoggerFactory.getLogger(SmarkAppMiniServer.class);
 
     private ISmarkSparkService smarkSparkService;
     ClassLoader classLoader;
 
-    private SmarkAppStatus status;
+    private SmarkAppStatus status = SmarkAppStatus.UNKNOWN;;
 
     private String appRootDir;
 
@@ -46,6 +46,7 @@ public class SmarkAppMiniServer {
         this.appSpec = appSpec;
         this.builderUI = builderUI;
         this.appRootDir = appSpec.getCodeOutRootDir();
+       // this.status = SmarkAppStatus.UNKNOWN;
     }
 
     public SmarkAppMiniServer(SmarkAppSpec appSpec) {

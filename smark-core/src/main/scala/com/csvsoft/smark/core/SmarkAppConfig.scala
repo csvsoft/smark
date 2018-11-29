@@ -8,7 +8,15 @@ import collection.JavaConverters._
 import com.csvsoft.smark.config.SmarkAppSpec
 
 case class SmarkAppConfig(configProps: Properties,debugRunId:Long = -1L) {
+
+  private val nameValuelist = configProps.keySet().asScala.map(key=> (key.asInstanceOf[String],configProps.getProperty(key.asInstanceOf[String])))
+  private val nameValueMap = Map(nameValuelist.toSeq:_*)
+
   def getConfig(name: String): String = configProps.getProperty(name)
+
+  def getConfigMap:java.util.Map[String,String]={
+    nameValueMap.asJava
+  }
 
   def getRunId(): Long = Option(getConfig("runId")) match {
     case Some(s) => s.toLong

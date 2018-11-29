@@ -24,6 +24,10 @@ abstract class BaseTasklet(val name: String, val order: Int, val desc: String=""
 
   override def preTask(): Boolean = true
 
+  protected def evalExpression(expr:String):String ={
+    TemplateUtils.merge(expr,ctx.appConfig.getConfigMap)
+  }
+
   protected def getRunnableSQL(sql: String): String = {
     if (sql.contains("$")) {
       //val mergeMap = mapAsJavaMap(Map("ctx" -> ctx))
